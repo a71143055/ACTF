@@ -18,6 +18,7 @@ try:
         CellDifferentiationType
     )
     from neural_interface import BrainComputerInterface
+    from visualization import ACTFVisualizer
 except ImportError as e:
     print(f"Import error: {e}")
     print("Make sure all ACTF modules are in the same directory")
@@ -40,7 +41,7 @@ class ACTFIntegrationTest:
             "details": details
         }
         self.test_results.append(result)
-        status_symbol = "✓" if passed else "✗"
+        status_symbol = "[OK]" if passed else "[FAIL]"
         print(f"{status_symbol} {test_name}")
         if details:
             print(f"  └─ {details}")
@@ -369,6 +370,37 @@ def main():
         json.dump(report, f, indent=2, ensure_ascii=False)
     
     print(f"\n리포트가 저장되었습니다: {report_filename}")
+    
+    # 시각화 생성
+    print("\n" + "="*80)
+    print("Generating Visualizations...")
+    print("="*80)
+    
+    visualizer = ACTFVisualizer(output_dir="./visualizations")
+    
+    # 시스템 데이터 수집
+    actf = ACTFMainController()
+    actf.initialize()
+    diagnosis = actf.diagnose()
+    
+    # 줄기세포 배양 시스템 데이터
+    cultivation = StemCellCultivationSystem()
+    stem_status = cultivation.get_system_status()
+    
+    # BCI 데이터
+    bci = BrainComputerInterface()
+    bci.register_neural_interface("MAIN_INTERFACE")
+    bci.initialize_interfaces()
+    bci_status = bci.get_full_status()
+    
+    # 모든 시각화 생성
+    visualizer.generate_all_visualizations(
+        diagnosis=diagnosis,
+        stem_status=stem_status,
+        bci_status=bci_status
+    )
+    
+    print("\n✓ All visualizations completed successfully!")
 
 
 if __name__ == "__main__":
