@@ -1,0 +1,57 @@
+{
+  "object_name": "ACTF_Endoskeleton",
+  "component_type": "endoskeleton",
+  "material": "Biological Tissue",
+  "color": [
+    0.31,
+    0.8,
+    0.78
+  ],
+  "systems": [
+    {
+      "name": "nervous_system",
+      "type": "sphere",
+      "position": [
+        0,
+        1.75,
+        0
+      ],
+      "radius": 0.12
+    },
+    {
+      "name": "circulatory_system",
+      "type": "sphere",
+      "position": [
+        0.05,
+        1.25,
+        0.05
+      ],
+      "radius": 0.08
+    },
+    {
+      "name": "respiratory_system_left",
+      "type": "sphere",
+      "position": [
+        -0.08,
+        1.2,
+        0
+      ],
+      "radius": 0.1
+    },
+    {
+      "name": "respiratory_system_right",
+      "type": "sphere",
+      "position": [
+        0.08,
+        1.2,
+        0
+      ],
+      "radius": 0.1
+    },
+    {
+      "name": "muscular_system",
+      "type": "capsules",
+      "count": 4
+    }
+  ]
+}
