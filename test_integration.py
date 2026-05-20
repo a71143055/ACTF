@@ -19,6 +19,7 @@ try:
     )
     from neural_interface import BrainComputerInterface
     from visualization import ACTFVisualizer
+    from plotly_3d_viz import Plotly3DVisualizer
 except ImportError as e:
     print(f"Import error: {e}")
     print("Make sure all ACTF modules are in the same directory")
@@ -401,6 +402,16 @@ def main():
     )
     
     print("\n✓ All visualizations completed successfully!")
+    
+    # Plotly 3D 시각화 생성
+    print("\n" + "="*80)
+    print("Generating Plotly 3D Visualizations...")
+    print("="*80)
+    
+    plotly_viz = Plotly3DVisualizer(output_dir="./plotly_3d")
+    plotly_viz.generate_all_3d_visualizations()
+    
+    print("\n✓ Plotly 3D visualizations completed successfully!")
 
 
 if __name__ == "__main__":
